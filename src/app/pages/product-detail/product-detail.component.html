@@ -1,0 +1,45 @@
+@if (loading) {
+<div class="spinner-border text-primary" role="status">
+    <span class="visually-hidden">Loading...</span>
+</div>
+} @else{
+<div class="container">
+    <div class="row">
+        <div class="col-12">
+            <h1>Product: <span class="text-muted">{{product?.title}}</span></h1>
+            <div class="card">
+                <div id="carouselProduct" class="carousel slide">
+                    <div class="carousel-inner">
+                        @for (item of product?.images; track $index) {
+                        <div class="carousel-item" [ngClass]="{'active': $index === 1}">
+                            <img src="{{item}}" class="d-block w-100" alt="{{product?.title}}">
+                        </div>
+                        }
+                    </div>
+                    <button class="carousel-control-prev" type="button" data-bs-target="#carouselProduct"
+                        data-bs-slide="prev">
+                        <span class="carousel-control-prev-icon" aria-hidden="true"></span>
+                        <span class="visually-hidden">Previous</span>
+                    </button>
+                    <button class="carousel-control-next" type="button" data-bs-target="#carouselProduct"
+                        data-bs-slide="next">
+                        <span class="carousel-control-next-icon" aria-hidden="true"></span>
+                        <span class="visually-hidden">Next</span>
+                    </button>
+                </div>
+                <div class="card-body">
+                    <h5 class="card-title">{{product?.title}}</h5>
+                    <h6 class="card-subtitle text-muted">{{product?.brand}}</h6>
+                    <p class="card-text">{{product?.description}}</p>
+                    <h6 class="card-subtitle card-subtitle-category mb-3">{{product?.category}}</h6>
+                    <h6 class="card-subtitle text-primary">{{product?.price | currency}}</h6>
+                    @if (product?.stock ?? 0 > 0) {
+                    <hr>
+                    <button class="btn btn-primary">Buy</button>
+                    }
+                </div>
+            </div>
+        </div>
+    </div>
+</div>
+}

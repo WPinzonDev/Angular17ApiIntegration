@@ -1,0 +1,24 @@
+<div class="container">
+    <div class="row">
+        <div class="col-12">
+            <h1>Products</h1>
+        </div>
+    </div>
+    <div class="row row-cols-sm-1 row-cols-md-2 row-cols-lg-3">
+        @for (product of productList; track $index) {
+        <div class="col mb-3">
+            <div class="card" style="width: 18rem;">
+                <img src="{{product.thumbnail}}" class="card-img-top" alt="{{product.title}}">
+                <div class="card-body">
+                    <h5 class="card-title">{{product.title}}</h5>
+                    <h6 class="card-subtitle text-muted">{{product.brand}}</h6>
+                    <p class="card-text">{{product.description}}</p>
+                    <h6 class="card-subtitle text-primary">{{product.price | currency}}</h6>
+                    <hr>
+                    <button class="btn btn-outline-primary" (click)="navegate(product.id)">Details</button>
+                </div>
+            </div>
+        </div>
+        }
+    </div>
+</div>

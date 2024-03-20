@@ -1,6 +1,12 @@
 img {
     object-fit:contain;
     object-position: center;
-    height: 300px;
+    max-height: 300px;
     overflow: hidden;
+  }
+
+  @media (min-width: 768px) {
+    img{
+      height: 300px;
+    }
   }

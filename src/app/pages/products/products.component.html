@@ -4,15 +4,22 @@
             <h1>Products</h1>
         </div>
     </div>
-    <div class="row row-cols-sm-1 row-cols-md-2 row-cols-lg-3">
+    <div class="row row-cols-1  row-cols-sm-1 row-cols-md-2 row-cols-lg-3">
         @for (product of productList; track $index) {
         <div class="col mb-3">
-            <div class="card" style="width: 18rem;">
+            <div class="card w-full">
+                @defer (on viewport) {
                 <img src="{{product.thumbnail}}" class="card-img-top" alt="{{product.title}}">
+                } @placeholder {
+                <div class="spinner-border text-primary" role="status">
+                    <span class="visually-hidden">Loading...</span>
+                </div>
+                }
                 <div class="card-body">
                     <h5 class="card-title">{{product.title}}</h5>
                     <h6 class="card-subtitle text-muted">{{product.brand}}</h6>
-                    <p class="card-text">{{product.description}}</p>
+                    <p class="card-text">{{product.description | truncate: 35}}</p>
+                    <h6 class="card-subtitle text-danger mb-3">{{product.category}}</h6>
                     <h6 class="card-subtitle text-primary">{{product.price | currency}}</h6>
                     <hr>
                     <button class="btn btn-outline-primary" (click)="navegate(product.id)">Details</button>
